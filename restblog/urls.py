@@ -20,7 +20,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    '',
     # url(r'^$', 'usermanager.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
