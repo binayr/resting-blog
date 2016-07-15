@@ -42,7 +42,7 @@
 {% block js-required %}
 <script type="text/javascript">
 	function open_summary(pk) {
-        var url = "{% url 'get_ppt_summary' %}";
+        var url = "";
         $.get(url, {'pk': pk}, function(res){
             if ( res ) {
                 $('.modal').html(res).modal('show');

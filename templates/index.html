@@ -8,7 +8,7 @@
 
 {% block home-marquee %}
 <div class="loader col-md-12"><img src="{% get_static_prefix %}images/pie.gif"></div>
-<div class="col-md-12" id="presentation-div">
+<div class="col-md-12" id="blog-div">
 	
 </div>
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"></div>
@@ -19,7 +19,7 @@
 
 <script type="text/javascript">
 	function open_summary(pk) {
-        var url = "{% url 'get_ppt_summary' %}";
+        var url = "";
         $.get(url, {'pk': pk}, function(res){
             if ( res ) {
                 $('.modal').html(res).modal('show');
@@ -36,7 +36,7 @@
 <style type="text/css">
 	.loader{text-align: center;}
 	.loader.col-md-12 > img{max-height: 50px;}
-	.ppt-panel {display: inline-block;margin: 15px 35px;}
-	.ppt-panel{padding-left: 0px;padding-right: 0px;}
+	.blog-panel {display: inline-block;margin: 15px 35px;}
+	.blog-panel{padding-left: 0px;padding-right: 0px;}
 </style>
 {% endblock %}

@@ -36,14 +36,13 @@
                 {% endblock %}
             </div>
         </div>
+        <a href="{% url 'add_new_blog' %}" class="btn btn-fab pink add-blog-float" data-toggle="tooltip" title="Add New Blog"><i class="fa fa-plus white-text"></i></a>
         <!-- Main Footer -->
         {% block footer %}{% include 'footer.html' %}{% endblock %}
     </body>
 
     {% block url-required %}
     <script>
-        var GET_ALL_PRESENTATION = "{% url 'presentation_api' %}";
-        var GET_PRESENTATION = "{% url 'search_presentation_api' %}";
     </script>
     {% endblock %}
     <script type="text/javascript" language="javascript" src="{% get_static_prefix %}jquery/dist/jquery.min.js"></script>

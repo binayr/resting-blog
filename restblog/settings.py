@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Installed externally
     'rest_framework', 'rest_framework_swagger',
+    # code apps
+    'usermanager', 'apps.blogs'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -112,6 +114,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+LOGIN_REDIRECT_URL = '/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
