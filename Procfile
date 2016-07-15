@@ -1,1 +1,1 @@
-web: gunicorn prezi.wsgi
+web: gunicorn restblog.wsgi
