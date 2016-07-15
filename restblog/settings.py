@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Installed externally
-    'rest_framework', 'rest_framework_swagger',
+    'rest_framework', 'rest_framework_swagger', 'ckeditor',
     # code apps
     'usermanager', 'apps.blogs'
 ]
@@ -115,6 +115,7 @@ USE_L10N = True
 USE_TZ = True
 
 LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/login/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
@@ -132,6 +133,8 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 MEDIA_ROOT = ''
 MEDIA_URL = '/media/'
 # ADMIN_MEDIA_PREFIX = '/media/admin/'
+
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
 
 try:
     from local_settings import *

@@ -6,6 +6,7 @@ from django.http import Http404
 from rest_framework import status
 from .models import Blog
 from .serializer import BlogSerializer
+from slugify import slugify
 
 
 class BlogView(APIView):
@@ -19,12 +20,15 @@ class BlogView(APIView):
 
     def post(self, request, format=None):
         """Post method for serializers to create new ppt. not tested."""
+        print request.data
         serializer = BlogSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            print 'here'
+            serializer.save(request)
             response = {'success': True, 'data': serializer.data}
             return Response(response, status=status.HTTP_201_CREATED)
         else:
+            print 'or here'
             response = {'success': False, 'data': serializer.errors}
             return Response(response, status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

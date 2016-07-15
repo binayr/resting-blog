@@ -4,6 +4,7 @@ from django.views.generic import TemplateView
 from django.shortcuts import render_to_response
 from .models import Blog
 from .forms import BlogForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class BlogView(TemplateView):
@@ -23,14 +24,14 @@ class BlogView(TemplateView):
         )
 
 
-class NewBlogView(TemplateView):
+class NewBlogView(LoginRequiredMixin, TemplateView):
     """List all presentation, or create a new user."""
 
     template_name = 'add_new_blog.html'
 
     def render_to_response(self, context, **response_kwargs):
         """Render method for the view."""
-        context['form'] = BlogForm()
+        context['form'] = BlogForm(self.request)
         response_kwargs.setdefault('content_type', self.content_type)
         return self.response_class(
             request=self.request,

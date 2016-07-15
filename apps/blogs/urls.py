@@ -14,7 +14,7 @@ urlpatterns = patterns(
         name="get_blog_summary"),
 
     # API URLs
-    url(r'^api/v1/blogs/all/$', api.BlogView.as_view(),
+    url(r'^api/v1/blogs/$', api.BlogView.as_view(),
         name="blogs_api"),
     url(r'^api/v1/blog/(?P<pk>[-\w]+)/',
         api.BlogDetails.as_view(), name="blog_api"),
