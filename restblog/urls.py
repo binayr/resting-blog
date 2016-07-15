@@ -27,7 +27,7 @@ urlpatterns = [
     # url(r'^', include('usermanager.urls')),
     # url(r'^', include('apps.jsonparser.urls')),
 
-    url(r'^register/$', 'usermanager.views.register', name='register'),
+    # url(r'^register/$', 'usermanager.views.register', name='register'),
 
     url(r'^login/$', 'django.contrib.auth.views.login',
         {'template_name': 'login.html'}, name="login"),
