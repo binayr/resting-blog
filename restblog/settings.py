@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Installed externally
+    'rest_framework', 'rest_framework_swagger',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -55,7 +57,7 @@ ROOT_URLCONF = 'restblog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,13 +76,9 @@ WSGI_APPLICATION = 'restblog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
+DATABASES = {}
+import dj_database_url
+DATABASES['default'] = dj_database_url.config()
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -116,6 +114,23 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
+# https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+# STATICFILES_DIRS = (
+#     # os.path.join(BASE_DIR, 'media'),
+#     # Put strings here, like "/home/html/static" or "C:/www/django/static".
+#     # Always use forward slashes, even on Windows.
+#     # Don't forget to use absolute paths, not relative paths.
+#     os.path.join(BASE_DIR, "static"),
+# )
+MEDIA_ROOT = ''
+MEDIA_URL = '/media/'
+# ADMIN_MEDIA_PREFIX = '/media/admin/'
+
+try:
+    from local_settings import *
+except ImportError:
+    print "error"
