@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% load staticfiles %}
+{% block title %}
+	<title>Add New Blog</title>
+{% endblock %}
+
+
+{% block home-marquee %}
+<div class="loader col-md-12"><img src="{% get_static_prefix %}images/pie.gif"></div>
+<div class="col-md-12" id="blog-div">
+	<form>
+     {{form}}   
+    </form>
+</div>
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"></div>
+{% endblock %}
+
+{% block js-required %}
+<script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+{% endblock %}
+
+{% block css-required %}
+<style type="text/css">
+	.loader{text-align: center;display: none;}
+	.loader.col-md-12 > img{max-height: 50px;}
+</style>
+{% endblock %}
