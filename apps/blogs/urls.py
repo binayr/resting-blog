@@ -10,8 +10,10 @@ urlpatterns = patterns(
         name="add_new_blog"),
     url(r'^blogs/all/$', views.BlogView.as_view(),
         name="all_prezi"),
-    url(r'^presentation-summary/$', views.get_blog_summary,
+    url(r'^blog-summary/$', views.get_blog_summary,
         name="get_blog_summary"),
+    url(r'^blog/(?P<slug>[-\w]+)/$', views.get_blog_summary,
+        name="open_blog_summary"),
 
     # API URLs
     url(r'^api/v1/blogs/$', api.BlogView.as_view(),

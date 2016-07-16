@@ -43,11 +43,13 @@
 
     {% block url-required %}
     <script>
+        var ALL_BLOGS = '{% url "blogs_api" %}';
     </script>
     {% endblock %}
     <script type="text/javascript" language="javascript" src="{% get_static_prefix %}jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" language="javascript" src="{% get_static_prefix %}bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" language="javascript" src="{% get_static_prefix %}bootstrap-material-design/dist/js/material.min.js"></script>
+    
 
     {% block js-required %}
     {% endblock %}

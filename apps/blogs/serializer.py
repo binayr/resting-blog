@@ -18,7 +18,18 @@ class BlogSerializer(serializers.ModelSerializer):
                   'creator', 'body', 'created_at')
 
     def save(self, request, *args, **kwargs):
-        blog = Blog.objects.create(
-            title=self.data['title'], body=self.data['body'],
-            slug=slugify(self.data['slug']), creator=request.user)
-        return blog
+        if not Blog.objects.filter(
+                title=self.data['title'], creator=request.user):
+            blog = Blog.objects.create(
+                title=self.data['title'], body=self.data['body'],
+                slug=slugify(self.data['slug']), creator=request.user)
+            return blog, True
+        else:
+            blog = Blog.objects.filter(
+                title=self.data['title'], creator=request.user)
+            try:
+                blog = Blog.objects.filter(pk=blog[0].id).update(
+                    body=self.data['body'], slug=slugify(self.data['slug']))
+                return blog, False
+            except:
+                return None, None

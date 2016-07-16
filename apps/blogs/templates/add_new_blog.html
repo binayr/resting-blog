@@ -30,6 +30,7 @@
 
 {% block js-required %}
 {{ form.media }}
+<script type="text/javascript" language="javascript" src="{% get_static_prefix %}js/jquery.toaster.js"></script>
 <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
 {% endblock %}
 

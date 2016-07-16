@@ -41,11 +41,12 @@ class NewBlogView(LoginRequiredMixin, TemplateView):
         )
 
 
-def get_blog_summary(request):
+def get_blog_summary(request, slug):
     """Get the summary of ppt over the modal."""
-    pk = request.GET.get('pk', None)
-    p = Blog.objects.filter(id=pk)
+    # slug = request.GET.get('slug', None)
+    p = Blog.objects.filter(slug=slug)
     ctx = {
-        'blog': p
+        'blog': p,
+        'user': request.user
     }
     return render_to_response('blog_detail.html', ctx)

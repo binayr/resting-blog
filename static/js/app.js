@@ -9,6 +9,8 @@ $(document).ready(function() {
       console.log('first check')
       blog.create();
     });
+    
+
 });
 
 var Blog = function() {
@@ -16,7 +18,7 @@ var Blog = function() {
       var self = this;
       $.ajax({  
           type: "GET",  
-          url: '#',
+          url: ALL_BLOGS,
           dataType: "json",
           beforeSend: function(){$(".loader").show()},
           success: function(res) { 
@@ -29,13 +31,13 @@ var Blog = function() {
       if(data.length!=0){
         if(data.length<number){number=data.length}
         for(var i = 0; i < number; i++) {
-          html += '<a href="javascript:void(0);" onclick="open_summary('+"'"+data[i].id+"'"+');">\
-                  <div class="panel panel-danger col-md-3 col-sm-12 blog-panel">\
+          html += '<a href="blog/'+data[i].slug+'/">\
+                  <div class="panel panel-danger col-md-8 col-sm-12 blog-panel">\
                   <div class="panel-heading teal">\
                       <h3 class="panel-title white-text">'+ data[i].title +'</h3>\
                   </div>\
                   <div class="panel-body">\
-                      <img class="img-responsive" src="'+data[i].thumbnail+'">\
+                      <p>'+data[i].body+'</p>\
                   </div>\
                   <span style="padding:10px;">Created by <a href="'+data[i].creator.profile_url+'">@'+ data[i].creator.username +'</a></span>\
               </div></a>';          
@@ -72,8 +74,17 @@ var Blog = function() {
           dataType: "json",
           beforeSend: function(){$(".loader").show()},
           success: function(res) {
-              alert('success');
-          }  
+            console.log(res.success)
+            if(res.success){
+              $.toaster({ priority : 'success', title : 'Success!', message : res.message});
+            } else {
+              $.toaster({ priority : 'danger', title : 'Error!', message : res.message});
+            }
+          },
+          error: function(res){
+            console.log(res.responseText)
+            $.toaster({ priority : 'danger', title : 'Error!', message : 'Body can not be empty.'});
+          }
       }).done(function(){$(".loader").hide()});      
 
     }
@@ -88,3 +99,5 @@ var Blog = function() {
 }
 
 var blog = new Blog();
+
+
