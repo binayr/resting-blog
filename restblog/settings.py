@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+import logging
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -136,6 +137,38 @@ MEDIA_URL = '/media/'
 # ADMIN_MEDIA_PREFIX = '/media/admin/'
 
 CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
+
+LOG_FILE_NAME = os.path.join(BASE_DIR, 'log.txt')
+logging.disable(DEBUG)
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s',
+            'datefmt': "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'main_handler': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'formatter': 'verbose',
+            # 'maxBytes': 1024*1024*5,
+            # 'backupCount': 5,
+            'filename': os.path.join(BASE_DIR, 'log', 'main.log')
+        },
+    },
+    'loggers': {'main': {
+        'handlers': ['main_handler'],
+        'level': 'INFO',
+        'propagate': True,
+    }}
+}
 
 try:
     from local_settings import *

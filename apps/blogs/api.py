@@ -8,6 +8,9 @@ from .models import Blog
 from .serializer import BlogSerializer
 # from slugify import slugify
 from django.db.models import Q
+import logging
+
+logger = logging.getLogger('main')
 
 
 class BlogView(APIView):
@@ -22,7 +25,6 @@ class BlogView(APIView):
     def post(self, request, format=None):
         """Post method for serializers to create new ppt. not tested."""
         serializer = BlogSerializer(data=request.data)
-        print request.data
         if serializer.is_valid():
             obj, created = serializer.save(request)
             if created:
@@ -37,7 +39,6 @@ class BlogView(APIView):
 
     def put(self, request, format=None):
         """Post method for serializers to create new ppt. not tested."""
-        print request.data
         serializer = BlogSerializer(data=request.data)
         if serializer.is_valid():
             obj, created = serializer.save(request)
@@ -53,6 +54,7 @@ class BlogView(APIView):
         try:
             return Blog.objects.get(pk=pk)
         except Blog.DoesNotExist:
+            logger.error('Blog Not Found')
             raise Http404
 
     def delete(self, request, pk, format=None):

@@ -9,6 +9,7 @@
 {% block home-marquee %}
 <div class="loader col-md-12"><img src="{% get_static_prefix %}images/pie.gif"></div>
 <div class="col-md-12" id="content-div">
+{% if blog %}
   {% for b in blog %}
     <div class="col-md-12 head-container">
       <h1 class="green-text blog-header">{{b.title}}</h1>
@@ -25,6 +26,9 @@
     {% if user == b.creator %}<a href="{% url 'edit_blog' b.slug %}" class="btn btn-link">edit</a> <a href="{% url 'delete_blog' b.id %}" onclick="delete_blog('{{b.id}}');return false;" id="delete-blog" class="btn btn-link">delete</a>{% endif %}
 
   {% endfor %}
+{% else %}
+  <h1 class="green-text blog-header">The Page you are looking for does not exists.</h1>
+{% endif %}
 </div>
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"></div>
 {% endblock %}

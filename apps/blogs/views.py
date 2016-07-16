@@ -6,6 +6,9 @@ from django.shortcuts import render_to_response
 from .models import Blog
 from .forms import BlogForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+import logging
+
+logger = logging.getLogger('main')
 
 
 class BlogView(TemplateView):
@@ -59,6 +62,7 @@ def edit_blog(request, slug):
     try:
         p = Blog.objects.get(slug=slug)
     except:
+        logger.error('Blog Not found')
         p = None
     ctx = {'blog': p, 'form': BlogForm(request, instance=p), 'user': request.user}
     return render_to_response('edit_blog.html', ctx,  context_instance=RequestContext(request))

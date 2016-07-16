@@ -1,3 +1,7 @@
+[![Demo status](https://elegant-livre-77487.herokuapp.com)](https://elegant-livre-77487.herokuapp.com)
+[![django](https://www.djangoproject.com/)](https://www.djangoproject.com/)
+[![Bower version](https://badge.fury.io/bo/bootstrap-material-design.svg)](https://github.com/FezVrasta/bootstrap-material-design)
+
 **RestingBlog** is a test project to Create, Retrive, Update, Delete and Search Blogs:
 
 * API endpoints available for almost every module.
