@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from .forms import RegistrationForm
+from django.contrib import messages
 
 
 def home(request):
@@ -20,6 +21,9 @@ def register(request):
             if user:
                 login(request, user)
             return HttpResponseRedirect('/')
+        else:
+            print form.errors
+            messages.error(request, form.errors)
 
     else:
         form = RegistrationForm()

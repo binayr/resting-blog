@@ -8,7 +8,7 @@
 <a href="{% url 'home' %}">&lt;&lt;Back to Home</a>
 
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-5">
    <h2 class="green-text">Login</h2>
 
    <form class="form-horizontal" action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
@@ -29,6 +29,7 @@
      <div class="form-group">
         <div class="col-md-10">
           <button type="submit" class="btn purple lighten-5">Login</button>
+          <a href="{% url 'register' %}" class="btn btn-link">Don't have an account?</a>
           
         </div>
       </div>
