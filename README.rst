@@ -1,7 +1,3 @@
-[![Demo status](https://elegant-livre-77487.herokuapp.com)](https://elegant-livre-77487.herokuapp.com)
-[![django](https://www.djangoproject.com/)](https://www.djangoproject.com/)
-[![Bower version](https://badge.fury.io/bo/bootstrap-material-design.svg)](https://github.com/FezVrasta/bootstrap-material-design)
-
 **RestingBlog** is a test project to Create, Retrive, Update, Delete and Search Blogs:
 
 * API endpoints available for almost every module.
@@ -30,6 +26,15 @@ Features
 ===========================
 Documentation
 ===========================
+
+Steps to Install the application
+---------------------------------
+- Create a virtualenvironment with python 2.7 and install all requirements.
+- Create a database with any database technology you prefer and add the db details in the local_settings.py preferably in mysql.
+- Save the local_settings.py in resting-blog/restblog directory.
+- run *python manage.py migrate* to create db tables.
+- run *python manage.py runserver* and you are ready to go.
+- the logs are stored at log/ directory in main.log, you can have app wise more logs by adding more handlers in settings.
 
 ===========================
 Demo
