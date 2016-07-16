@@ -6,8 +6,11 @@ $(document).ready(function() {
     });
     $('#blog-form').on('submit', function(e){
       e.preventDefault();
-      console.log('first check')
       blog.create();
+    });
+    $('#edit-blog-form').on('submit', function(e){
+      e.preventDefault();
+      blog.update();
     });
     
 
@@ -64,7 +67,6 @@ var Blog = function() {
       }).done(function(){$(".loader").hide()});
     }
     this.create = function(){
-      console.log('second')
       var self = this;
       $("#id_slug").val(self.slugify($('#id_title').val()));
       for (instance in CKEDITOR.instances) {
@@ -91,6 +93,50 @@ var Blog = function() {
       }).done(function(){$(".loader").hide()});      
 
     }
+    this.update = function(){
+      var self = this;
+      $("#id_slug").val(self.slugify($('#id_title').val()));
+      for (instance in CKEDITOR.instances) {
+          CKEDITOR.instances[instance].updateElement();
+      }
+      $.ajax({  
+          type: "PUT",
+          url: $('#edit-blog-form').attr('action'),
+          data: $('#edit-blog-form').serialize(),
+          dataType: "json",
+          headers: {"X-HTTP-Method-Override": "PUT", "X-CSRFToken": getCookie("csrftoken")},
+          beforeSend: function(){$(".loader").show()},
+          success: function(res) {
+            console.log(res.success)
+            if(res.success){
+              $.toaster({ priority : 'success', title : 'Success!', message : res.message});
+            } else {
+              $.toaster({ priority : 'danger', title : 'Error!', message : res.message});
+            }
+          },
+          error: function(res){
+            console.log(res.responseText)
+            $.toaster({ priority : 'danger', title : 'Error!', message : 'Body can not be empty.'});
+          }
+      }).done(function(){$(".loader").hide()});      
+
+    }
+    this.delete = function(id){
+      var self = this;
+      $.ajax({  
+          type: "DELETE",
+          url: $('#delete-blog').attr('href'),
+          dataType: "json",
+          headers: {"X-HTTP-Method-Override": "DELETE", "X-CSRFToken": getCookie("csrftoken")},
+          beforeSend: function(){$(".loader").show()},
+          success: function(res) {
+            console.log(res)
+            $.toaster({ priority : 'success', title : 'Success!', message : 'Blog Deleted.'});
+            window.location = "/";
+          },
+      });      
+
+    }
     this.slugify = function(Text)
     {
         return Text
@@ -103,4 +149,21 @@ var Blog = function() {
 
 var blog = new Blog();
 
-
+function getCookie(c_name)
+{
+    if (document.cookie.length > 0)
+    {
+        c_start = document.cookie.indexOf(c_name + "=");
+        if (c_start != -1)
+        {
+            c_start = c_start + c_name.length + 1;
+            c_end = document.cookie.indexOf(";", c_start);
+            if (c_end == -1) c_end = document.cookie.length;
+            return unescape(document.cookie.substring(c_start,c_end));
+        }
+    }
+    return "";
+ }
+function delete_blog(id){
+  blog.delete(id)
+}

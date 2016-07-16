@@ -35,11 +35,35 @@ class BlogView(APIView):
             return Response(response, status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def put(self, request, format=None):
+        """Post method for serializers to create new ppt. not tested."""
+        print request.data
+        serializer = BlogSerializer(data=request.data)
+        if serializer.is_valid():
+            obj, created = serializer.save(request)
+            response = {'success': True, 'data': serializer.data, 'message': 'Blog Updated.'}
+            return Response(response, status=status.HTTP_201_CREATED)
+        else:
+            response = {'success': False, 'data': serializer.errors, 'message': serializer.errors}
+            return Response(response, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def get_object(self, pk):
+        """Geting the object according to values."""
+        try:
+            return Blog.objects.get(pk=pk)
+        except Blog.DoesNotExist:
+            raise Http404
+
     def delete(self, request, pk, format=None):
         """Delete method for BlogView."""
         blog = self.get_object(pk)
-        blog.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        if request.user == blog.creator:
+            blog.delete()
+            response = {'success': True, 'message': 'Blog Deleted.'}
+        else:
+            response = {'success': True, 'message': 'You are not authorized to Delete this Blog.'}
+        return Response(response, status=status.HTTP_204_NO_CONTENT)
 
 
 class BlogDetails(APIView):

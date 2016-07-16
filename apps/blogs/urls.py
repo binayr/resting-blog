@@ -14,10 +14,14 @@ urlpatterns = patterns(
         name="get_blog_summary"),
     url(r'^blog/(?P<slug>[-\w]+)/$', views.get_blog_summary,
         name="open_blog_summary"),
+    url(r'^blog/edit/(?P<slug>[-\w]+)/$', views.edit_blog,
+        name="edit_blog"),
 
     # API URLs
     url(r'^api/v1/blogs/$', api.BlogView.as_view(),
         name="blogs_api"),
+    url(r'^api/v1/blog/delete/(?P<pk>\d+)/',
+        api.BlogView.as_view(), name='delete_blog'),
     url(r'^api/v1/blog/(?P<pk>[-\w]+)/',
         api.BlogDetails.as_view(), name="blog_api"),
     url(r'^api/v1/search/blog/',

@@ -18,3 +18,5 @@ class BlogForm(forms.ModelForm):
     def __init__(self, request, *args, **kwargs):
         super(BlogForm, self).__init__(*args, **kwargs)
         self.fields['creator'].initial = request.user
+        if self.instance:
+            self.fields['title'].widget.attrs['readonly'] = True

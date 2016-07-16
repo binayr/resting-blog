@@ -1,6 +1,7 @@
 """Api File for presentation."""
 
 from django.views.generic import TemplateView
+from django.template import RequestContext
 from django.shortcuts import render_to_response
 from .models import Blog
 from .forms import BlogForm
@@ -49,4 +50,15 @@ def get_blog_summary(request, slug):
         'blog': p,
         'user': request.user
     }
-    return render_to_response('blog_detail.html', ctx)
+    return render_to_response('blog_detail.html', ctx, context_instance=RequestContext(request))
+
+
+def edit_blog(request, slug):
+    """Get the summary of ppt over the modal."""
+    # slug = request.GET.get('slug', None)
+    try:
+        p = Blog.objects.get(slug=slug)
+    except:
+        p = None
+    ctx = {'blog': p, 'form': BlogForm(request, instance=p), 'user': request.user}
+    return render_to_response('edit_blog.html', ctx,  context_instance=RequestContext(request))
