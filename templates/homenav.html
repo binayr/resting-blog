@@ -18,9 +18,8 @@
 		</div>
 		<div class="col-md-12">
 		<div class="col-md-8">
-			<a href="#" class="btn" style="padding:5px 20px;margin:5px 1px;">All Blogs</a>
 		{% if user.is_authenticated %}
-			<a href="#" class="btn" style="padding:5px 20px;margin:5px 1px;">Home</a>
+			<a href="{% url 'home' %}" class="btn" style="padding:5px 20px;margin:5px 1px;">Home</a>
 			<a href="#" class="btn" style="padding:5px 20px;margin:5px 1px;">Profile</a>
 			<a href="#" class="btn" style="padding:5px 20px;margin:5px 1px;">My Blogs</a>
 		</div>
