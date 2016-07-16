@@ -26,7 +26,7 @@ Features
 ===========================
 Documentation
 ===========================
-
+---------------------------------
 Steps to Install the application
 ---------------------------------
 - Create a virtualenvironment with python 2.7 and install all requirements.
