@@ -31,16 +31,16 @@ var Blog = function() {
       if(data.length!=0){
         if(data.length<number){number=data.length}
         for(var i = 0; i < number; i++) {
-          html += '<a href="blog/'+data[i].slug+'/">\
-                  <div class="panel panel-danger col-md-8 col-sm-12 blog-panel">\
+          html += '<div class="panel panel-danger col-md-8 col-sm-12 blog-panel">\
                   <div class="panel-heading teal">\
-                      <h3 class="panel-title white-text">'+ data[i].title +'</h3>\
+                      <a href="blog/'+data[i].slug+'/">\
+                      <h3 class="panel-title white-text">'+ data[i].title +'</h3></a>\
                   </div>\
                   <div class="panel-body">\
                       <p>'+data[i].body+'</p>\
                   </div>\
                   <span style="padding:10px;">Created by <a href="'+data[i].creator.profile_url+'">@'+ data[i].creator.username +'</a></span>\
-              </div></a>';          
+              </div>';          
         }
       } else {
         html = '<div class="alert alert-dismissible alert-info">\
@@ -49,13 +49,13 @@ var Blog = function() {
       }
       $("#blog-div").html(html);
     }
-    this.search_blog = function(title){
+    this.search_blog = function(term){
       var self = this;
       $("#blog-div").empty();
       $.ajax({  
           type: "GET",  
-          url: 'GET_BLOG',
-          data: 'title='+title,
+          url: SEARCH_BLOG,
+          data: 'term='+term,
           dataType: "json",
           beforeSend: function(){$(".loader").show()},
           success: function(res) {
@@ -67,6 +67,9 @@ var Blog = function() {
       console.log('second')
       var self = this;
       $("#id_slug").val(self.slugify($('#id_title').val()));
+      for (instance in CKEDITOR.instances) {
+          CKEDITOR.instances[instance].updateElement();
+      }
       $.ajax({  
           type: "POST",
           url: $('#blog-form').attr('action'),

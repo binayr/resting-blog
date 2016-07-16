@@ -18,7 +18,7 @@ class Blog(models.Model):
     creator = models.ForeignKey(User)
     body = RichTextField()
     slug = models.SlugField(max_length=50)
-    created_at = models.DateField(default=datetime.date.today)
+    created_at = models.DateTimeField(default=datetime.datetime.now)
 
     def __unicode__(self):
         return self.title

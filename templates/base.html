@@ -44,6 +44,7 @@
     {% block url-required %}
     <script>
         var ALL_BLOGS = '{% url "blogs_api" %}';
+        var SEARCH_BLOG = '{% url "search_blog_api" %}';
     </script>
     {% endblock %}
     <script type="text/javascript" language="javascript" src="{% get_static_prefix %}jquery/dist/jquery.min.js"></script>

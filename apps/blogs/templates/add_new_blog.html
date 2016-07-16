@@ -7,7 +7,7 @@
 
 
 {% block home-marquee %}
-<div class="col-md-12" id="blog-div" style="margin-bottom:20px;">
+<div class="col-md-12" id="new-blog-div" style="margin-bottom:20px;">
 	<h3 class="teal-text">Add New Blog</h3>
 	<form action="{% url 'blogs_api' %}" method="post" id="blog-form" enctype="multipart/form-data">{% csrf_token %}
       <div class="row">
