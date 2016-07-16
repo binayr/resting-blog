@@ -1,18 +1,16 @@
 from django.shortcuts import render
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User, Group, Permission
 from django.http import HttpResponseRedirect
-from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth import authenticate, login
 from .forms import RegistrationForm
 
 
 def home(request):
-    """"""
+    """Main Homepage."""
     return render(request, 'index.html')
 
 
 def register(request):
+    """Register method."""
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():

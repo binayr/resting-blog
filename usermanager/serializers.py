@@ -1,7 +1,5 @@
 """Serializers for UserManager."""
-import datetime
 from rest_framework import serializers
-from rest_framework.validators import UniqueValidator
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 User = get_user_model()
@@ -9,6 +7,7 @@ User = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
     """Main Serializer for User Model."""
+
     username = serializers.CharField(max_length=20)
     email = serializers.EmailField()
 

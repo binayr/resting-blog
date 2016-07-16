@@ -4,7 +4,6 @@ from rest_framework.views import APIView
 from django.contrib.auth.models import User
 from .serializers import UserSerializer
 from rest_framework.response import Response
-from django.http import Http404
 from rest_framework import status
 from django.db.models import Q
 
@@ -30,21 +29,12 @@ class UserList(APIView):
             return Response(response, status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, pk, format=None):
-        """Delete method for UserList."""
-        user = self.get_object(pk)
-        user.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
 
 class UserQuery(APIView):
     """List all users, or create a new user."""
 
     def get(self, request, term, format=None):
         """Get method for UserList to view all users."""
-        # term = request.GET['term']
-        print term
-
         users = User.objects.filter(
             Q(username__icontains=term) |
             Q(first_name__icontains=term) |
