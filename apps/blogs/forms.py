@@ -32,6 +32,6 @@ class BlogEditForm(forms.ModelForm):
         exclude = ['id', 'created_at']
 
     def __init__(self, request, *args, **kwargs):
-        super(BlogForm, self).__init__(*args, **kwargs)
+        super(BlogEditForm, self).__init__(*args, **kwargs)
         self.fields['creator'].initial = request.user
         self.fields['title'].widget.attrs['readonly'] = True

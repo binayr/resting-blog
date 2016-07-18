@@ -65,4 +65,4 @@ def edit_blog(request, slug):
         logger.error('Blog Not found')
         p = None
     ctx = {'blog': p, 'form': BlogEditForm(request, instance=p), 'user': request.user}
-    return render_to_response('edit_blog.html', ctx,  context_instance=RequestContext(request))
+    return render_to_response('edit_blog.html', ctx, context_instance=RequestContext(request))
