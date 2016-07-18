@@ -16,12 +16,12 @@ Features
 ---------------
 * API endpoints
 ---------------
-  - https://elegant-livre-77487.herokuapp.com/api/v1/users/ (To check the details of all available users)
-  - https://elegant-livre-77487.herokuapp.com/api/v1/user/(?P<term>[-\w]+)/ (search user with name/email/username containing the term searched)
-  - https://elegant-livre-77487.herokuapp.com/api/v1/blogs/ (To get all Blogs + Create, Retrive and Update Done here)
-  - https://elegant-livre-77487.herokuapp.com/api/v1/blog/delete/<id>/ (To  delete bload with id)
-  - https://elegant-livre-77487.herokuapp.com/api/v1/blog/(?P<pk>[-\w]+)/ (to get blog with the pk provided)
-  - https://elegant-livre-77487.herokuapp.com/api/v1/search/blog/?term=<any term that you want to search here> (gives a result list containning all blogs having a part of the searched term.)
+  - https://greve-maison-11317.herokuapp.com/api/v1/users/ (To check the details of all available users)
+  - https://greve-maison-11317.herokuapp.com/api/v1/user/(?P<term>[-\w]+)/ (search user with name/email/username containing the term searched)
+  - https://greve-maison-11317.herokuapp.com/api/v1/blogs/ (To get all Blogs + Create, Retrive and Update Done here)
+  - https://greve-maison-11317.herokuapp.com/api/v1/blog/delete/<id>/ (To  delete bload with id)
+  - https://greve-maison-11317.herokuapp.com/api/v1/blog/(?P<pk>[-\w]+)/ (to get blog with the pk provided)
+  - https://greve-maison-11317.herokuapp.com/api/v1/search/blog/?term=<any term that you want to search here> (gives a result list containning all blogs having a part of the searched term.)
 
 ===========================
 Documentation
@@ -40,7 +40,7 @@ Steps to Install the application
 Demo
 ===========================
 
-https://elegant-livre-77487.herokuapp.com
+https://greve-maison-11317.herokuapp.com
 
 ===========================
 Technologies used
