@@ -4,11 +4,7 @@ from . import views
 from . import api
 
 urlpatterns = [
-    # Examples:
-
-    url(r'^admin/', include(admin.site.urls)),
-
     # Api Urls
-    url(r'^api/v1/users/', api.UserList.as_view(), name="user_api"),
-    url(r'^api/v1/user/(?P<term>[-\w]+)/', api.UserQuery.as_view(), name="userdetails_api"),
+    url(r'^api-v1/users/', api.UserList.as_view(), name="user_api"),
+    url(r'^api-v1/user/(?P<term>[-\w]+)/', api.UserQuery.as_view(), name="userdetails_api"),
 ]

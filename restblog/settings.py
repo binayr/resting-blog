@@ -41,8 +41,18 @@ INSTALLED_APPS = [
     # Installed externally
     'rest_framework', 'rest_framework_swagger', 'ckeditor',
     # code apps
-    'usermanager', 'apps.blogs'
+    'usermanager', 'apps.blogs', 'rest_framework_docs',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',

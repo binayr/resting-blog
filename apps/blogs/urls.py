@@ -18,12 +18,12 @@ urlpatterns = patterns(
         name="edit_blog"),
 
     # API URLs
-    url(r'^api/v1/blogs/$', api.BlogView.as_view(),
+    url(r'^api-v1/blogs/$', api.BlogView.as_view(),
         name="blogs_api"),
-    url(r'^api/v1/blog/delete/(?P<pk>\d+)/',
+    url(r'^api-v1/blog/delete/(?P<pk>\d+)/',
         api.BlogView.as_view(), name='delete_blog'),
-    url(r'^api/v1/blog/(?P<pk>[-\w]+)/',
+    url(r'^api-v1/blog/(?P<pk>[-\w]+)/',
         api.BlogDetails.as_view(), name="blog_api"),
-    url(r'^api/v1/search/blog/',
+    url(r'^api-v1/search/blog/',
         api.SearchBlog.as_view(), name="search_blog_api"),
 )

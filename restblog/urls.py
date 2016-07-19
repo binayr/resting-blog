@@ -24,9 +24,11 @@ from usermanager.views import register
 urlpatterns = [
     url(r'^$', 'usermanager.views.home', name='home'),
 
+    url(r'^user/', include('usermanager.urls')),
+    url(r'^blog/', include('apps.blogs.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^', include('usermanager.urls')),
-    url(r'^', include('apps.blogs.urls')),
+
+    url(r'^docs/', include('rest_framework_docs.urls')),
 
     url(r'^register/$', register, name='register'),
 
